@@ -13,6 +13,6 @@ git clone https://github.com/hashicorp-services/enablement-terraform-lab-modules
 
 mkdir -p /home/terraform
 
-mv lab-terraform-adoption-pmr/terraform-cloud /home/terraform/terraform-cloud
+mv lab-tfc-private-module-registry/terraform-cloud /home/terraform/terraform-cloud
 
 ```
