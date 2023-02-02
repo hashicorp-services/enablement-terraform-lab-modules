@@ -1,7 +1,3 @@
-variable "region" {}
-variable "prefix" {}
-variable "name" {}
-
 variable "region" {
   description = "AWS Cloud Hosting Region"
   default = "us-east-2"
