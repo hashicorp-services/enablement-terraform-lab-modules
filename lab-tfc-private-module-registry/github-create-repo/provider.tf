@@ -9,5 +9,5 @@ terraform {
 
 provider "github" {
   # Configuration options
-  token = var.pat
+  token = var.gh_pat
 }
