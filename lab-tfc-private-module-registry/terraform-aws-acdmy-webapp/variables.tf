@@ -1,6 +1,6 @@
 variable "region" {
   description = "AWS Cloud Hosting Region"
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "prefix" {
@@ -10,5 +10,5 @@ variable "prefix" {
 
 variable "name" {
   description = "Name for webapp"
-  default     = <RANDOM_BUCKET_NAME>
+  default     = "<RANDOM_BUCKET_NAME>"
 }
