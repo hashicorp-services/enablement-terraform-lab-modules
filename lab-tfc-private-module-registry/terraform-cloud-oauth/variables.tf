@@ -15,7 +15,7 @@ variable "organization" {
   description = "Terraform Cloud organization"
 }
 
-variable "pat" {
+variable "gh_pat" {
   type = string
   description = "Github Personal Access token"
 }

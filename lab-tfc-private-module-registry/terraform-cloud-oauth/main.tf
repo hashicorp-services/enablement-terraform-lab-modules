@@ -3,6 +3,6 @@ resource "tfe_oauth_client" "github" {
   organization     = var.organization
   api_url          = "https://api.github.com"
   http_url         = "https://github.com"
-  oauth_token      = var.pat
+  oauth_token      = var.gh_pat
   service_provider = "github"
 }
