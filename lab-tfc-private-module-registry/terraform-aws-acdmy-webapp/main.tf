@@ -45,9 +45,11 @@ EOF
 }
 
 resource "aws_s3_object" "webapp" {
-  acl          = "public-read"
-  key          = "index.html"
-  bucket       = aws_s3_bucket.bucket.id
-  content      = file("${path.module}/assets/index.html")
+  acl    = "public-read"
+  key    = "index.html"
+  bucket = aws_s3_bucket.bucket.id
+  content = templatefile("${path.module}/templates/index.tpl", {
+    public_key = var.public_key
+  })
   content_type = "text/html"
 }
