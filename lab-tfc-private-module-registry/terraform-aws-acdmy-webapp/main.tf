@@ -1,4 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
+  depends_on = [ aws_s3_bucket_acl.bucket ]
   bucket_prefix = "${var.prefix}-${var.name}"
 
   force_destroy = true
