@@ -1,0 +1,10 @@
+class = "Advanced Terraform"
+day   = "Thursday"
+is_terraform     = rule { class is "Advanced Terraform" }
+is_thursday      = rule { day is "Thursday" }
+
+main = rule {
+	is_terraform and
+	is_thursday
+}
+
