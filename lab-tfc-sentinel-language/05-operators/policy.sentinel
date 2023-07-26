@@ -1,0 +1,16 @@
+/*
+Exercise 05 - Operators & Delimiters
+*/
+
+import "types"
+
+param maxPageCount default 1000
+
+eval_bookPageCount = rule {
+	maxPageCount <= 1500 and
+	maxPageCount >= 500
+}
+
+main = rule {
+	eval_bookPageCount
+}

@@ -1,0 +1,10 @@
+{
+	"records": [
+		{
+			"key": "policy",
+			"source": "./policy.sentinel",
+			"sourceSum": "",
+			"dest": "/Users/andrewmarrone/Documents/GitHub/sentinel-from-scratch/08-functions-modules/policy.sentinel"
+		}
+	]
+}
