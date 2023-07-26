@@ -1,11 +1,12 @@
 resource "aws_s3_bucket" "bucket" {
-  depends_on = [ aws_s3_bucket_acl.bucket ]
   bucket_prefix = "${var.prefix}-${var.name}"
 
   force_destroy = true
 }
 
 resource "aws_s3_bucket_website_configuration" "bucket" {
+  depends_on = [aws_s3_bucket_public_access_block.bucket]
+
   bucket = aws_s3_bucket.bucket.id
 
   index_document {
@@ -34,16 +35,15 @@ resource "aws_s3_bucket_ownership_controls" "bucket" {
 }
 
 resource "aws_s3_bucket_acl" "bucket" {
-  depends_on = [
-	aws_s3_bucket_public_access_block.bucket,
-	aws_s3_bucket_ownership_controls.bucket,
-  ]
+  depends_on = [aws_s3_bucket_public_access_block.bucket]
 
   bucket = aws_s3_bucket.bucket.id
   acl    = "public-read"
 }
 
 resource "aws_s3_object" "webapp" {
+  depends_on = [aws_s3_bucket_public_access_block.bucket]
+
   acl    = "public-read"
   key    = "index.html"
   bucket = aws_s3_bucket.bucket.id
