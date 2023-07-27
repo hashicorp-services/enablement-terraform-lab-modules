@@ -1,8 +1,8 @@
 import "module" "library" {
-  source = "./modules/library.sentinel"
+  source = ""
 }
 
 policy "policy" {
-  source = "./policy.sentinel"
-  enforcement_level = "hard-mandatory"
+  source = ""
+  enforcement_level = ""
 }

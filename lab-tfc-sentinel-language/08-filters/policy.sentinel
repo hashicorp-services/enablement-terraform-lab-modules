@@ -14,12 +14,7 @@ authors = [
 	"Robi Sen",
 ]
 
-books = filter library.search.all() as _, book {
-	book.status in status and
-		all book.authors as author {
-			author in authors
-		}
-}
+/* LINE 17 */
 
 eval_books = rule {
 	all books as _, book {
