@@ -2,8 +2,6 @@
 Exercise 06 - Collections
 */
 
-param index default 0
-
 books = [
 	{
 		"title": "Unlocking Android",
