@@ -7,8 +7,7 @@ import "types"
 param maxPageCount default 1000
 
 eval_bookPageCount = rule {
-	maxPageCount <= 1500 and
-	maxPageCount >= 500
+	maxPageCount <= 1500
 }
 
 main = rule {
