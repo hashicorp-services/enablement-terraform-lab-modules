@@ -34,13 +34,7 @@ authors = [
 ]
 
 eval_book = rule {
-	all books as _, book {
-		book.pageCount <= 1500 and
-			book.status in status and
-			all book.authors as author {
-				author in authors
-			}
-	}
+
 }
 main = rule {
 	eval_book
