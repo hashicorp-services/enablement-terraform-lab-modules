@@ -1,5 +1,5 @@
 module "tfconfig-functions" {
-  source = "../../../common-functions/tfconfig-functions/tfconfig-functions.sentinel"
+  source = "../../common-functions/tfconfig-functions/tfconfig-functions.sentinel"
 }
 
 mock "tfconfig/v2" {
