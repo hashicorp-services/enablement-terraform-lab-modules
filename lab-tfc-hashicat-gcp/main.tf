@@ -66,6 +66,16 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
+  metadata_startup_script = <<SCRIPT
+    sudo apt -y install apache2
+    sudo systemctl start apache2
+    sudo chown -R ubuntu:ubuntu /var/www/html
+    chmod +x *.sh
+    PLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ./deploy_app.sh
+    sudo apt -y install cowsay
+    cowsay "Mooooooooooo!"
+  SCRIPT
+
   tags = ["http-server"]
 
   labels = {
@@ -86,26 +96,6 @@ resource "null_resource" "configure-cat-app" {
   provisioner "file" {
     source      = "files/"
     destination = "/home/ubuntu/"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      timeout     = "300s"
-      private_key = tls_private_key.ssh-key.private_key_pem
-      host        = google_compute_instance.hashicat.network_interface.0.access_config.0.nat_ip
-    }
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt -y install apache2",
-      "sudo systemctl start apache2",
-      "sudo chown -R ubuntu:ubuntu /var/www/html",
-      "chmod +x *.sh",
-      "PLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ./deploy_app.sh",
-      "sudo apt -y install cowsay",
-      "cowsay Mooooooooooo!",
-    ]
 
     connection {
       type        = "ssh"
