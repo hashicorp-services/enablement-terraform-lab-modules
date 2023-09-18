@@ -2,9 +2,6 @@ import "http"
 import "json"
 import "strings"
 
-# Placeholder URL
-mocky_url = "https://run.mocky.io/v3/"
-
 mock_data = [
 	{
 		"title":     "Unlocking Android",
@@ -44,7 +41,6 @@ mock_data = [
 
 
 get = func(u) {
-	# return json.unmarshal(mock_data)
   return mock_data
 }
 
