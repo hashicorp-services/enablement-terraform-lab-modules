@@ -2,20 +2,58 @@ import "http"
 import "json"
 import "strings"
 
-mocky_url = "https://run.mocky.io/v3/4be444b9-003e-4032-9c3f-e6aab4242ddc"
+# Placeholder URL
+mocky_url = "https://run.mocky.io/v3/"
+
+mock_data = [
+	{
+		"title":     "Unlocking Android",
+		"pageCount": 416,
+		"status":    "PUBLISH",
+		"authors": [
+			"W. Frank Ableson",
+			"Robi Sen",
+		],
+	},
+	{
+		"title":     "Android in Action, Second Edition",
+		"pageCount": 592,
+		"status":    "PUBLISH",
+		"authors": [
+			"W. Frank Ableson",
+			"Robi Sen",
+		],
+	},
+ 	{
+		"title":     "Do Androids Dream of Electric Sheep?",
+		"pageCount": 210,
+		"status":    "PUBLISH",
+		"authors": [
+			"Philip K. Dick",
+		],
+	},
+ 	{
+		"title":     "Moby Dick",
+		"pageCount": 427,
+		"status":    "PUBLISH",
+		"authors": [
+			"Herman Melville",
+		],
+	},
+]
+
 
 get = func(u) {
-	req = http.request(u)
-	resp = http.get(req)
-	return json.unmarshal(resp.body)
+	# return json.unmarshal(mock_data)
+  return mock_data
 }
 
 search = {
 	"all": func() {
-		return get(mocky_url)
+		return mock_data
 	},
 	"title": func(t) {
-    response = get(mocky_url)
+    response = mock_data
 
     results = filter response as _, result {
       result.title contains t
@@ -24,7 +62,7 @@ search = {
 		return results
 	},
 	"author": func(name) {
-    response = get(mocky_url)
+    response = mock_data
 
     results = filter response as _, result {
       all result.authors as author {
