@@ -11,20 +11,19 @@ terraform {
 
 provider "aws" {}
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "instance" {
   most_recent = true
+  owners      = ["amazon"]
 
   filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+    name   = "architecture"
+    values = ["x86_64"]
   }
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
-  owners = ["099720109477"] # Canonical
 }
 
 resource "aws_vpc" "vpc" {
@@ -80,7 +79,7 @@ resource "aws_security_group" "sg_8080" {
 
 
 resource "aws_instance" "web" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.instance.id
   instance_type               = var.instance_type
   subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_8080.id]
