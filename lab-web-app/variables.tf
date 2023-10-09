@@ -1,36 +1,51 @@
+##############################################################################
+# Variables File
+#
+# Here is where we store the default values for all the variables used in our
+# Terraform code. If you create a variable with no default, the user will be
+# prompted to enter it (or define it via config file or command line flags.)
+
+variable "prefix" {
+  description = "This prefix will be included in the name of most resources."
+  default     = "academy"
+}
+
+variable "region" {
+  description = "The region where the resources are created."
+  default     = "us-east-1"
+}
+
+variable "address_space" {
+  description = "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
+  default     = "10.0.0.0/16"
+}
+
+variable "subnet_prefix" {
+  description = "The address prefix to use for the subnet."
+  default     = "10.0.10.0/24"
+}
+
 variable "instance_type" {
-  description = "type of AWS isntance to use e.g. t2.micro"
-  default     = "t3.micro"
+  description = "Specifies the AWS instance type."
+  default     = "t2.micro"
 }
 
-variable "cidr_vpc" {
-  description = "CIDR block for the VPC"
-  default     = "10.1.0.0/16"
+variable "admin_username" {
+  description = "Administrator user name for mysql"
+  default     = "hashicorp"
 }
 
-variable "cidr_subnet" {
-  description = "CIDR block for the subnet"
-  default     = "10.1.0.0/24"
+variable "height" {
+  default     = "400"
+  description = "Image height in pixels."
 }
 
-variable "environment_tag" {
-  description = "Environment tag"
-  default     = "Learn"
+variable "width" {
+  default     = "600"
+  description = "Image width in pixels."
 }
 
-variable "aws_region" {
-  description = "The AWS region to deploy your instance"
-  default     = "us-east-2"
-}
-
-# Modify the below values
-
-variable "user_name" {
-  description = "The user creating this infrastructure"
-  default     = "terraform"
-}
-
-variable "user_department" {
-  description = "The organization the user belongs to: dev, prod, qa"
-  default     = "learn"
+variable "placeholder" {
+  default     = "placekitten.com"
+  description = "Image-as-a-service URL. Some other fun ones to try are fillmurray.com, placecage.com, placebeard.it, loremflickr.com, baconmockup.com, placeimg.com, placebear.com, placeskull.com, stevensegallery.com, placedog.net"
 }
