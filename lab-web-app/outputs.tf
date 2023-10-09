@@ -1,3 +1,8 @@
-output "web_public_address" {
-  value = "http://${aws_instance.web.public_ip}:8080"
+# Outputs file
+output "catapp_url" {
+  value = "http://${aws_eip.hashicat.public_dns}"
+}
+
+output "catapp_ip" {
+  value = "http://${aws_eip.hashicat.public_ip}"
 }

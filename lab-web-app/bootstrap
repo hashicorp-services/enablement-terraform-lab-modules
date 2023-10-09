@@ -1,25 +1,28 @@
 #!/bin/bash
 
-# Install necessary dependencies
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
-sudo apt-get -y -qq install curl wget git vim apt-transport-https ca-certificates
-sudo add-apt-repository ppa:longsleep/golang-backports -y
-sudo apt-get update
-sudo apt -y -qq install golang-go
+sudo apt -y update
+sleep 15
+sudo apt -y update
+sudo apt -y install apache2
+sudo systemctl start apache2
+sudo chown -R ubuntu:ubuntu /var/www/html
+chmod +x *.sh
 
-# Setup sudo to allow no-password sudo for your group and adding your user
-sudo groupadd -r academy
-sudo useradd -m -s /bin/bash terraform
-sudo usermod -a -G academy terraform
-sudo cp /etc/sudoers /etc/sudoers.orig
-echo "terraform ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/terraform
+cat << EOM > /var/www/html/index.html
+<html>
+  <head><title>Meow!</title></head>
+  <body>
+  <div style="width:800px;margin: 0 auto">
 
-# Create GOPATH for your user & download the webapp from github
-sudo -H -i -u terraform -- env bash << EOF
-cd /home/terraform
-export GOROOT=/usr/lib/go
-export GOPATH=/home/terraform/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-go get -d github.com/hashicorp/learn-go-webapp-demo
-cd go/src/github.com/hashicorp/learn-go-webapp-demo
-go run webapp.go
+  <!-- BEGIN -->
+  <center><img src="http://${PLACEHOLDER}/${WIDTH}/${HEIGHT}"></img></center>
+  <center><h1>Meow World!</h1></center>
+  Welcome to ${PREFIX}'s app - bringing you your daily "awwwwwww"
+  <!-- END -->
+
+  </div>
+  </body>
+</html>
+EOM
+
+EOF
