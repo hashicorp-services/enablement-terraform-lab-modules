@@ -12,9 +12,9 @@ import "tfrun"
 import "strings"
 
 ### Parameters ###
-# The address of the TFC or TFE server
+# The address of the HCP Terraform or TFE server
 param address default "app.terraform.io"
-# The organizations on the TFC or TFE server that modules can some from
+# The organizations on the HCP Terraform or TFE server that modules can some from
 param organizations
 
 # Fnd modules called from root module that are not in the desired PMR
