@@ -1,7 +1,7 @@
 
 variable hostname {
   type        = string
-  description = "The Terraform Cloud/Enterprise hostname to connect to"
+  description = "The HCP Terraform/Enterprise hostname to connect to"
   default     = "app.terraform.io"
 }
 
@@ -12,7 +12,7 @@ variable "oauth_name" {
 
 variable "organization" {
   type = string
-  description = "Terraform Cloud organization"
+  description = "HCP Terraform organization"
 }
 
 variable "gh_pat" {
