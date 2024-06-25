@@ -23,7 +23,7 @@ variable "region" {
 
 variable "zone" {
   description = "The zone where the resources are created."
-  default     = "us-central1-b"
+  default     = "us-central1-a" 
 }
 
 variable "subnet_prefix" {
