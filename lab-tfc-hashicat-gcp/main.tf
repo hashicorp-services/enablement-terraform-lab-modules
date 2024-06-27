@@ -66,7 +66,7 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  metadata_startup_script = <<SCRIPT
+  metadata_startup_script = <<-EOF
     sudo apt update && sudo apt -y install apache2
     sudo systemctl start apache2
     sudo chown -R ubuntu:ubuntu /var/www/html
@@ -74,7 +74,7 @@ resource "google_compute_instance" "hashicat" {
     PLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ./deploy_app.sh
     sudo apt -y install cowsay
     cowsay "Mooooooooooo!"
-  SCRIPT
+  EOF
 
   tags = ["http-server"]
 
