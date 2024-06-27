@@ -23,13 +23,13 @@ resource "google_compute_network" "hashicat" {
 resource "google_compute_subnetwork" "hashicat" {
   name          = "${var.prefix}-subnet"
   region        = var.region
-  network       = google_compute_network.hashicat.self_link
+  network       = google_compute_network.hashicat.id
   ip_cidr_range = var.subnet_prefix
 }
 
 resource "google_compute_firewall" "http-server" {
   name    = "${var.prefix}-default-allow-ssh-http"
-  network = google_compute_network.hashicat.self_link
+  network = google_compute_network.hashicat.id
 
   allow {
     protocol = "tcp"
@@ -57,7 +57,7 @@ resource "google_compute_instance" "hashicat" {
   }
 
   network_interface {
-    subnetwork = google_compute_subnetwork.hashicat.self_link
+    subnetwork = google_compute_subnetwork.hashicat.id
     access_config {
     }
   }
