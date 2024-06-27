@@ -67,7 +67,7 @@ resource "google_compute_instance" "hashicat" {
   }
 
   metadata_startup_script = <<SCRIPT
-    sudo apt -y install apache2
+    sudo apt update && sudo apt -y install apache2
     sudo systemctl start apache2
     sudo chown -R ubuntu:ubuntu /var/www/html
     chmod +x *.sh
