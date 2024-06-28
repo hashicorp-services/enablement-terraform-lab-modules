@@ -66,10 +66,7 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  metadata_startup_script = <<-EOF
-  #! bin/bash
-  cd sudo echo this-works > test.txt
-  EOF
+  metadata_startup_script = "sudo apt update && sudo apt -y install apache2"
 
   tags = ["http-server"]
 
