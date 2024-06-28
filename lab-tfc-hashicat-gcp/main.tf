@@ -68,7 +68,7 @@ resource "google_compute_instance" "hashicat" {
 
   metadata_startup_script = <<-EOF
     #! /bin/bash
-    touch upsilon
+    sudo touch upsilon
   EOF
 
   tags = ["http-server"]
