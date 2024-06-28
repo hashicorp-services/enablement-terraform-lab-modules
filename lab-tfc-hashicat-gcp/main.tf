@@ -67,8 +67,8 @@ resource "google_compute_instance" "hashicat" {
   }
 
   metadata_startup_script = <<-EOF
-    #! bin/bash
-    sudo echo this-works > test.txt
+  #! bin/bash
+  cd sudo echo this-works > test.txt
   EOF
 
   tags = ["http-server"]
