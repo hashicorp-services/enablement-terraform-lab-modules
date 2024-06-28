@@ -66,7 +66,10 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  metadata_startup_script = "#! /bin/bash \nsudo echo hi > /test.txt"
+  metadata_startup_script = <<<-EOF
+  #! bin/bash
+  sudo echo this-works > test.txt
+  EOF
 
   tags = ["http-server"]
 
