@@ -14,6 +14,7 @@ variable "project" {
 
 variable "prefix" {
   description = "This prefix will be included in the name of some resources. You can use your own name or any other short string here."
+  default     = "instruqt"
 }
 
 variable "region" {
@@ -23,7 +24,7 @@ variable "region" {
 
 variable "zone" {
   description = "The zone where the resources are created."
-  default     = "us-central1-b"
+  default     = "us-central1-b" 
 }
 
 variable "subnet_prefix" {
