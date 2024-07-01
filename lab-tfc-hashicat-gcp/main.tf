@@ -66,7 +66,7 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  metadata_startup_script = "sudo apt update && sudo apt -y install apache2 /nsudo chown -R ubuntu:ubuntu /var/www/html /nchmod +x *.sh /nPLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ./deploy_app.sh"
+  metadata_startup_script = "sudo apt update && sudo apt -y install apache2 /nsudo chmod +x *.sh /nPLACEHOLDER=${var.placeholder} WIDTH=${var.width} HEIGHT=${var.height} PREFIX=${var.prefix} ./deploy_app.sh"
 
   tags = ["http-server"]
 
