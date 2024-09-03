@@ -91,7 +91,7 @@ resource "azurerm_network_interface" "catapp-nic" {
   ip_configuration {
     name                          = "${var.user}ipconfig"
     subnet_id                     = azurerm_subnet.subnet.id
-    private_ip_address_allocation = "Static"
+    private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.catapp-pip.id
   }
 }
