@@ -101,7 +101,6 @@ locals {
 resource "aws_instance" "hashicat" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
-  key_name                    = aws_key_pair.hashicat.key_name
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.hashicat.id
   vpc_security_group_ids      = [aws_security_group.hashicat.id]
@@ -111,17 +110,4 @@ resource "aws_instance" "hashicat" {
   tags = {
     Name = "${var.prefix}-hashicat-instance"
   }
-}
-
-resource "tls_private_key" "hashicat" {
-  algorithm = "ED25519"
-}
-
-locals {
-  hashicat_private_key_filename = "${var.prefix}-ssh-key.pem"
-}
-
-resource "aws_key_pair" "hashicat" {
-  key_name   = local.hashicat_private_key_filename
-  public_key = tls_private_key.hashicat.public_key_openssh
 }

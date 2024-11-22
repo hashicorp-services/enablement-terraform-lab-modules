@@ -1,4 +1,3 @@
-
 resource "aws_vpc" "jared_web_instance" {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
@@ -101,7 +100,6 @@ locals {
 resource "aws_instance" "jared_web_instance" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
-  key_name                    = aws_key_pair.jared_web_instance.key_name
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.jared_web_instance.id
   vpc_security_group_ids      = [aws_security_group.jared_web_instance.id]
@@ -111,17 +109,4 @@ resource "aws_instance" "jared_web_instance" {
   tags = {
     Name = "${var.prefix}-jared_web_instance-instance"
   }
-}
-
-resource "tls_private_key" "jared_web_instance" {
-  algorithm = "ED25519"
-}
-
-locals {
-  jared_web_instance_private_key_filename = "${var.prefix}-ssh-key.pem"
-}
-
-resource "aws_key_pair" "jared_web_instance" {
-  key_name   = local.jared_web_instance_private_key_filename
-  public_key = tls_private_key.jared_web_instance.public_key_openssh
 }
