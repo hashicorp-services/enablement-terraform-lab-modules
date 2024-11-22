@@ -1,4 +1,3 @@
-
 resource "aws_vpc" "demo_test" {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
@@ -101,7 +100,6 @@ locals {
 resource "aws_instance" "demo_test" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
-  key_name                    = aws_key_pair.demo_test.key_name
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.demo_test.id
   vpc_security_group_ids      = [aws_security_group.demo_test.id]
@@ -111,17 +109,4 @@ resource "aws_instance" "demo_test" {
   tags = {
     Name = "${var.prefix}-demo_test-instance"
   }
-}
-
-resource "tls_private_key" "demo_test" {
-  algorithm = "ED25519"
-}
-
-locals {
-  demo_test_private_key_filename = "${var.prefix}-ssh-key.pem"
-}
-
-resource "aws_key_pair" "demo_test" {
-  key_name   = local.demo_test_private_key_filename
-  public_key = tls_private_key.demo_test.public_key_openssh
 }
