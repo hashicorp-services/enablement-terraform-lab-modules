@@ -22,11 +22,11 @@ variable "aws_region" {
 }
 
 variable "name" {
-  description = "The user account for the compute instance"
-  default     = "terraform"
+  description = "The user creating this infrastructure"
+  default     = "melvin"
 }
 
 variable "department" {
   description = "The organization the user belongs to: dev, prod, qa"
-  default     = "prod"
+  default     = "dev"
 }
