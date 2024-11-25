@@ -8,3 +8,11 @@ output "web_public_address" {
 output "web_public_ip" {
   value = aws_instance.web.public_ip
 }
+
+output "user" {
+  value = var.name
+}
+
+output "department" {
+  value = var.department
+}
