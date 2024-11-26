@@ -1,0 +1,26 @@
+#!/bin/bash
+
+sudo apt -y update
+sudo apt -y install apache2
+sudo systemctl start apache2
+sudo chown -R ubuntu:ubuntu /var/www/html
+chmod +x *.sh
+
+cat << EOM > /var/www/html/index.html
+<html>
+  <head><title>Meow!</title></head>
+  <body>
+  <div style="width:800px;margin: 0 auto">
+
+  <!-- BEGIN -->
+  <center><img src="http://${PLACEHOLDER}/${WIDTH}/${HEIGHT}"></img></center>
+  <center><h1>Meow World!</h1></center>
+  Welcome to ${PREFIX}'s app - bringing you your daily "awwwwwww"
+  <!-- END -->
+
+  </div>
+  </body>
+</html>
+EOM
+
+EOF
