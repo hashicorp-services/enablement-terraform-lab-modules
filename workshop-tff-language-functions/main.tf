@@ -54,7 +54,7 @@ resource "aws_eip" "eip_public" {
   domain   = "vpc"
 }
 
-resource "aws_eip_association" "terramino" {
+resource "aws_eip_association" "ea_association" {
   instance_id   = aws_instance.web.id
   allocation_id = aws_eip.eip_public.id
 }
