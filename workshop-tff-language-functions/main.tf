@@ -33,6 +33,7 @@ resource "aws_route_table_association" "rta_subnet_public" {
 resource "aws_security_group" "sg_8080" {
   name   = "sg_8080"
   vpc_id = aws_vpc.vpc.id
+
   ingress {
     from_port   = 8080
     to_port     = 8080
@@ -46,6 +47,16 @@ resource "aws_security_group" "sg_8080" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_eip" "eip_public" {
+  instance = aws_instance.web.id
+  domain   = "vpc"
+}
+
+resource "aws_eip_association" "terramino" {
+  instance_id   = aws_instance.web.id
+  allocation_id = aws_eip.eip_public.id
 }
 
 resource "aws_instance" "web" {
