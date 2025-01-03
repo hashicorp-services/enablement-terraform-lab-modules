@@ -30,3 +30,8 @@ variable "department" {
   description = "The organization the user belongs to: dev, prod, qa"
   default     = "dev"
 }
+
+variable "prefix" {
+  description = "Prefix for tags"
+  default     = "academy"
+}

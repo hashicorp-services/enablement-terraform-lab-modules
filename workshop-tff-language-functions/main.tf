@@ -5,10 +5,19 @@ resource "aws_vpc" "vpc" {
   cidr_block           = var.cidr_vpc
   enable_dns_support   = true
   enable_dns_hostnames = true
+
+  tags = {
+    name        = "${var.prefix}-vpc-${var.aws_region}"
+    environment = "dev"
+  }
 }
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "${var.prefix}-internet-gateway"
+  }
 }
 
 resource "aws_subnet" "subnet_public" {
@@ -65,4 +74,8 @@ resource "aws_instance" "web" {
   subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_8080.id]
   associate_public_ip_address = true
+
+  tags = {
+    Name = "${var.prefix}-web-instance"
+  }
 }
