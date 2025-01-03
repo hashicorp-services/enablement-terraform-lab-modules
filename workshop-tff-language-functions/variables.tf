@@ -21,6 +21,11 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "prefix" {
+  description = "Prefix for tags"
+  default     = "academy"
+}
+
 variable "name" {
   description = "The user creating this infrastructure"
   default     = "melvin"
