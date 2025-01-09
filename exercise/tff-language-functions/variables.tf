@@ -23,10 +23,10 @@ variable "aws_region" {
 
 variable "name" {
   description = "The user account for the compute instance"
-  default     = "academy"
+  default     = "steve"
 }
 
 variable "department" {
   description = "The organization the user belongs to: dev, prod, qa"
-  default     = "steve"
+  default     = "academy"
 }
