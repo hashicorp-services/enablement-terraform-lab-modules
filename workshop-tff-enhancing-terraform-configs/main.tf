@@ -8,7 +8,7 @@ resource "aws_instance" "terramino" {
   subnet_id                   = aws_subnet.terramino.id
   vpc_security_group_ids      = [aws_security_group.terramino.id]
 
-  user_data = templatefile("./bootstrap.tftpl")
+  user_data = file("./bootstrap.tftpl")
 
   tags = {
     Name = "dev-terramino-instance"
